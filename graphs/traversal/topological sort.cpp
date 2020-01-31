@@ -12,7 +12,7 @@ const int N = (int) 2e5 + 10;
 
 bool vis[N]; // array to mark visited nodes
 vector<vector<int>> gr; //your graph
-stack<int> st; // this stack holds the nodes in the toplogical oreder..
+stack<int> st; // this stack holds the nodes in the toplogical order..
 //topological sort...
 void top_sort(int u) {
 	vis[u] = true;
