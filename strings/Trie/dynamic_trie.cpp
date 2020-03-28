@@ -44,21 +44,19 @@ public:
 	void insert(string& s){
 		Node* cur = root;
 		for(auto c : s){
-			cur->prefix_words_count++;
 			if(cur->edges[int(c)] == NULL){
 				cur->edges[int(c)] = new Node();
 				nodes_count++;
 			}
 			cur = cur->edges[int(c)];
+			cur->prefix_words_count++;
 		}
-		cur->prefix_words_count++;
 		distinct_words_count += (++cur->end_words_count == 1);
 	}
 
 	void remove(string& s){
 		Node* cur = root;
 		for(auto c : s){
-			cur->end_words_count--;
 			Node* nxt = cur->edges[int(c)];
 			if(nxt->prefix_words_count == 1){
 				destroy(nxt);
@@ -67,8 +65,8 @@ public:
 				return;
 			}
 			cur = nxt;
+			cur->prefix_words_count--;
 		}
-		cur->prefix_words_count--;
 		cur->end_words_count--;
 	}
 
@@ -117,4 +115,15 @@ int main(){
 		cout<<t.search(s)<<endl;
 		cout<<t.prefix_count(s)<<endl;
 	}
+	int h; cin>>h;
+	for(int i = 0 ; i < h ; ++i){
+		string s; cin>>s;
+		t.remove(s);
+	}
+	for(int i = 0 ; i < n ; ++i){
+		string s; cin>>s;
+		cout<<t.search(s)<<endl;
+		cout<<t.prefix_count(s)<<endl;
+	}
 }
+
