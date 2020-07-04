@@ -27,7 +27,7 @@ public:
 
 	int find(int u) {
 		if (par[u] == u) return u;
-		return find(par[u]);
+		return par[u] = find(par[u]);
 	}
 
 	bool unin(int u, int v) {
